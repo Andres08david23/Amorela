@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     // Validar credenciales fijas
     if(usuario === 'admin' && contrasena === '12345') {
       // Usuario válido: redirigir a página principal (inicio.html)
-      window.location.href = 'inicio.html';
+      window.location.href = 'index.html';
     } else {
       alert('Usuario o contraseña incorrectos');
     }
