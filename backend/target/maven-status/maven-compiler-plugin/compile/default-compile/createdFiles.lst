@@ -1,4 +1,8 @@
-com\papeleria\regalos\PapeleriaApplication.class
+com\papeleria\regalos\model\LoginResponse.class
 com\papeleria\regalos\model\Product.class
 com\papeleria\regalos\controller\ProductController.class
+com\papeleria\regalos\controller\AuthController.class
+com\papeleria\regalos\PapeleriaApplication.class
+com\papeleria\regalos\service\AuthService.class
+com\papeleria\regalos\model\LoginRequest.class
 com\papeleria\regalos\service\ProductService.class
