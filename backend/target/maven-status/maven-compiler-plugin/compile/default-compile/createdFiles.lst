@@ -1,0 +1,4 @@
+com\papeleria\regalos\PapeleriaApplication.class
+com\papeleria\regalos\model\Product.class
+com\papeleria\regalos\controller\ProductController.class
+com\papeleria\regalos\service\ProductService.class
