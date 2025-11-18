@@ -13,7 +13,7 @@ public class AuthService {
     // usuarios en memoria: usuario -> contraseña
     private final Map<String, String> users = new HashMap<>();
 
-    // roles: usuario -> rol
+    // roles en memoria: usuario -> rol
     private final Map<String, String> roles = new HashMap<>();
 
     public AuthService() {

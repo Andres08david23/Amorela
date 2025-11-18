@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5500") // o el puerto donde sirvas el frontend
+@CrossOrigin(origins = {
+        "http://127.0.0.1:5500",
+        "http://localhost:5500"
+})
 @RestController
 @RequestMapping("/api/productos")
 public class ProductController {

@@ -5,7 +5,10 @@ import com.papeleria.regalos.model.LoginResponse;
 import com.papeleria.regalos.service.AuthService;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:5500") // cambia el puerto según tu Live Server
+@CrossOrigin(origins = {
+        "http://127.0.0.1:5500",
+        "http://localhost:5500"
+})
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -18,6 +21,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
+        System.out.println(">>> Petición de login de: " + request.getUsername());
         return authService.login(request);
     }
 }

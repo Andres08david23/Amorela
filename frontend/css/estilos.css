@@ -1,3 +1,6 @@
+/* ==========================================================
+   RESET GENERAL
+   ========================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -5,15 +8,18 @@
     font-family: 'Arial', sans-serif;
 }
 
+/* ==========================================================
+   BODY GENERAL
+   ========================================================== */
 body {
-    display: flex;
     min-height: 100vh;
     background: #f7f7f7;
     color: #000;
 }
 
-/*Atributos del login para añadir en la pagina principal*/
-
+/* ==========================================================
+   LOGIN
+   ========================================================== */
 .login-bg {
     background: #C985A1;
     width: 100vw;
@@ -26,25 +32,25 @@ body {
 .login-container {
     background: #fff;
     border-radius: 18px;
-    padding: 48px 48px 38px 48px;    /* Más espacio interno */
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12); /* Sombra más marcada */
+    padding: 48px 48px 38px 48px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 380px;                /* Más ancho */
-    max-width: 440px;                /* Más ancho */
-    min-height: 440px;               /* Más alto */
+    min-width: 380px;
+    max-width: 440px;
+    min-height: 440px;
 }
 
 .login-logo {
-    max-width: 150px;                /* Logo más grande */
+    max-width: 150px;
     margin-bottom: 22px;
 }
 
 .login-title {
     font-family: 'serif';
     color: #4D364A;
-    font-size: 2rem;                 /* Título más grande */
+    font-size: 2rem;
     margin-bottom: 24px;
 }
 
@@ -93,10 +99,203 @@ input[type="password"]:focus {
     background: #9d698e;
 }
 
+#mensaje-error {
+    margin-top: 10px;
+    text-align: center;
+    color: red;
+}
+
+/* ==========================================================
+   PRODUCTOS (prueba inicial)
+   ========================================================== */
 .producto {
     border: 1px solid #ddd;
     padding: 15px;
     margin: 10px;
     border-radius: 5px;
     background: #f8f8f8;
+}
+
+/* ==========================================================
+   DASHBOARD / INICIO
+   ========================================================== */
+
+/* Layout general */
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f2f2f2;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: #d88ca8;
+    border-radius: 0 40px 40px 0;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.sidebar-logo {
+    max-width: 150px;
+}
+
+/* Menú */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.menu-item.active {
+    background: #68d0b3;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateX(2px);
+}
+
+.menu-icon {
+    font-size: 1.2rem;
+}
+
+/* Contenido principal */
+.main-content {
+    flex: 1;
+    padding: 24px 32px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.dashboard-title {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.dashboard-subtitle {
+    margin: 4px 0 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+/* Iconos */
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.icon-button:hover {
+    background: #f0f0f0;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: #000;
+    border-radius: 50%;
+}
+
+/* Tarjetas resumen */
+.summary-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    background: #a0e0ca;
+    border-radius: 18px;
+    padding: 18px 20px;
+}
+
+.summary-card-main {
+    background: #d88ca8;
+    color: #fff;
+}
+
+.summary-card-alt {
+    background: #7bd0b3;
+}
+
+/* Sección de gráficos */
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.chart-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px 18px;
+}
+
+.chart-title {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.chart-image {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .summary-section,
+    .charts-section {
+        grid-template-columns: 1fr;
+    }
 }
