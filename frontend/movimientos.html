@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimientos - Amorela</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="img/logo.png" alt="Logo Amorela" class="sidebar-logo">
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="inicio.html" class="menu-item">
+                <span class="menu-icon">🏠</span><span class="menu-text">Inicio</span>
+            </a>
+            <a href="productos.html" class="menu-item">
+                <span class="menu-icon">📦</span><span class="menu-text">Productos</span>
+            </a>
+            <a href="movimientos.html" class="menu-item active">
+                <span class="menu-icon">💰</span><span class="menu-text">Movimientos</span>
+            </a>
+            <a href="facturacion.html" class="menu-item">
+                <span class="menu-icon">🧾</span><span class="menu-text">Facturación</span>
+            </a>
+            <a href="reportes.html" class="menu-item">
+                <span class="menu-icon">📊</span><span class="menu-text">Reportes</span>
+            </a>
+            <a href="clientes.html" class="menu-item">
+                <span class="menu-icon">👥</span><span class="menu-text">Clientes</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h1 class="dashboard-title">Movimientos</h1>
+                <h2 class="dashboard-subtitle">Ingresos y gastos del negocio</h2>
+            </div>
+        </header>
+
+        <!-- Tabs ingresos / gastos -->
+        <ul class="nav nav-tabs mb-3" id="mov-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="ingresos-tab" data-bs-toggle="tab"
+                        data-bs-target="#ingresos" type="button" role="tab">
+                    Ingresos (Ventas)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="gastos-tab" data-bs-toggle="tab"
+                        data-bs-target="#gastos" type="button" role="tab">
+                    Gastos
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- INGRESOS -->
+            <div class="tab-pane fade show active" id="ingresos" role="tabpanel">
+                <section class="mb-4">
+                    <h3 class="mb-3">Registrar ingreso (venta rápida)</h3>
+                    <form id="form-venta" class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label" for="venta-cliente">Cliente</label>
+                            <input type="text" id="venta-cliente" class="form-control" placeholder="Mostrador / Cliente">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="venta-fecha">Fecha</label>
+                            <input type="date" id="venta-fecha" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="venta-total">Total</label>
+                            <input type="number" id="venta-total" class="form-control" min="0" step="0.01">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="submit" class="btn btn-success w-100">Guardar</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section>
+                    <h3 class="mb-3">Listado de ingresos</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm" id="tabla-ingresos">
+                            <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Total</th>
+                                <th>Método pago</th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- JS llenará esto -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- GASTOS -->
+            <div class="tab-pane fade" id="gastos" role="tabpanel">
+                <section class="mb-4">
+                    <h3 class="mb-3">Registrar gasto</h3>
+                    <form id="form-gasto" class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label" for="gasto-fecha">Fecha</label>
+                            <input type="date" id="gasto-fecha" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="gasto-categoria">Categoría</label>
+                            <input type="text" id="gasto-categoria" class="form-control" placeholder="Arriendo, servicios...">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="gasto-descripcion">Descripción</label>
+                            <input type="text" id="gasto-descripcion" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label" for="gasto-valor">Valor</label>
+                            <input type="number" id="gasto-valor" class="form-control" min="0" step="0.01">
+                        </div>
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-danger">Guardar gasto</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section>
+                    <h3 class="mb-3">Listado de gastos</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm" id="tabla-gastos">
+                            <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Categoría</th>
+                                <th>Descripción</th>
+                                <th>Valor</th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- JS llenará esto -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="js/movimientos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

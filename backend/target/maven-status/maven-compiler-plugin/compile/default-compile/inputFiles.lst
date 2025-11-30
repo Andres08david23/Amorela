@@ -1,8 +1,17 @@
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\AuthController.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\ClienteController.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\GastoController.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\ProductController.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\VentaController.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Cliente.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Gasto.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\LoginRequest.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\LoginResponse.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Product.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Venta.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\PapeleriaApplication.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\AuthService.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\ClienteService.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\GastoService.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\ProductService.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\VentaService.java

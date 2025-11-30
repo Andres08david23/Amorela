@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Amorela</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="img/logo.png" alt="Logo Amorela" class="sidebar-logo">
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="inicio.html" class="menu-item">
+                <span class="menu-icon">🏠</span><span class="menu-text">Inicio</span>
+            </a>
+            <a href="productos.html" class="menu-item">
+                <span class="menu-icon">📦</span><span class="menu-text">Productos</span>
+            </a>
+            <a href="movimientos.html" class="menu-item">
+                <span class="menu-icon">💰</span><span class="menu-text">Movimientos</span>
+            </a>
+            <a href="facturacion.html" class="menu-item">
+                <span class="menu-icon">🧾</span><span class="menu-text">Facturación</span>
+            </a>
+            <a href="reportes.html" class="menu-item active">
+                <span class="menu-icon">📊</span><span class="menu-text">Reportes</span>
+            </a>
+            <a href="clientes.html" class="menu-item">
+                <span class="menu-icon">👥</span><span class="menu-text">Clientes</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h1 class="dashboard-title">Reportes</h1>
+                <h2 class="dashboard-subtitle">Análisis de ventas y finanzas</h2>
+            </div>
+        </header>
+
+        <section class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title">Ventas por mes</h3>
+                <img src="img/report-ventas-mes.png" alt="Ventas por mes" class="chart-image">
+            </div>
+            <div class="chart-card">
+                <h3 class="chart-title">Productos más vendidos</h3>
+                <img src="img/report-productos-top.png" alt="Productos top" class="chart-image">
+            </div>
+            <div class="chart-card">
+                <h3 class="chart-title">Ingresos vs Gastos</h3>
+                <img src="img/report-ingresos-gastos.png" alt="Ingresos vs gastos" class="chart-image">
+            </div>
+            <div class="chart-card">
+                <h3 class="chart-title">Clientes frecuentes</h3>
+                <img src="img/report-clientes-frecuentes.png" alt="Clientes frecuentes" class="chart-image">
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="js/reportes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

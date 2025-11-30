@@ -20,16 +20,31 @@ public class ProductController {
         this.service = service;
     }
 
+    // READ - listar todos
     @GetMapping
     public List<Product> listar() {
         return service.getAll();
     }
 
+    // READ - obtener uno por id
+    @GetMapping("/{id}")
+    public Product obtenerUno(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+    // CREATE - crear nuevo producto
     @PostMapping
     public Product crear(@RequestBody Product p) {
         return service.add(p);
     }
 
+    // UPDATE - actualizar producto existente
+    @PutMapping("/{id}")
+    public Product actualizar(@PathVariable Long id, @RequestBody Product p) {
+        return service.update(id, p);
+    }
+
+    // DELETE - eliminar producto
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) {
         service.delete(id);
