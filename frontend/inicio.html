@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <!-- Tus estilos -->
     <link rel="stylesheet" href="css/estilos.css">
 </head>
+
 <body>
     <div class="layout">
 
@@ -63,36 +65,71 @@
 
         <!-- ========== CONTENIDO PRINCIPAL ========== -->
         <main class="main-content">
+            
+        <!-- Menú del usuario -->
+        <div id="menu-usuario" class="user-menu d-none">
+            <button id="btn-logout" class="dropdown-item">Cerrar sesión</button>
+        </div>
 
             <!-- Barra superior -->
             <header class="topbar">
-                <div>
+                <div class="topbar-left">
                     <h1 class="dashboard-title">Dashboard</h1>
-                    <h2 class="dashboard-subtitle">Resumen general</h2>
+                    <p class="dashboard-subtitle">Resumen general de Amorela</p>
                 </div>
-                <div class="topbar-actions">
-                    <button class="icon-button" title="Notificaciones">🔔</button>
-                    <button class="icon-button" title="Mensajes">💬</button>
-                    <div class="user-avatar" title="Usuario">👤</div>
+
+                <div class="topbar-right">
+                    <div class="topbar-greeting">
+                        <span class="greeting-small">Bienvenido,</span>
+                        <span class="greeting-name" id="nombre-usuario">Valentina</span>
+                        <span class="greeting-role" id="rol-usuario">Administradora</span>
+                    </div>
+
+                    <div class="topbar-actions">
+                        <button class="icon-button" title="Notificaciones">🔔</button>
+                        <button class="icon-button" title="Mensajes">💬</button>
+                        <div class="user-avatar" title="Usuario">A</div>
+                    </div>
                 </div>
             </header>
 
             <!-- Tarjetas resumen -->
             <section class="summary-section">
 
-                <div class="summary-card summary-card-main">
-                    <p class="summary-title">Ventas de hoy</p>
+                <div class="summary-card summary-card-main card-pink">
+                    <div class="summary-header">
+                        <p class="summary-title">Ventas de hoy</p>
+                        <span class="summary-icon">💰</span>
+                    </div>
                     <p class="summary-number" id="ventas-hoy">$0</p>
+                    <p class="summary-extra">+0% vs ayer</p>
                 </div>
 
-                <div class="summary-card summary-card-alt">
-                    <p class="summary-title">Ventas del mes</p>
+                <div class="summary-card summary-card-main card-green">
+                    <div class="summary-header">
+                        <p class="summary-title">Ventas del mes</p>
+                        <span class="summary-icon">📈</span>
+                    </div>
                     <p class="summary-number" id="ventas-mes">$0</p>
+                    <p class="summary-extra">Objetivo 0% alcanzado</p>
                 </div>
 
-                <div class="summary-card summary-card-alt">
-                    <p class="summary-title">Clientes activos</p>
+                <div class="summary-card summary-card-main card-mint">
+                    <div class="summary-header">
+                        <p class="summary-title">Clientes activos</p>
+                        <span class="summary-icon">👥</span>
+                    </div>
                     <p class="summary-number" id="clientes-activos">0</p>
+                    <p class="summary-extra">0 nuevos esta semana</p>
+                </div>
+
+                <div class="summary-card summary-card-main card-purple">
+                    <div class="summary-header">
+                        <p class="summary-title">Productos en catálogo</p>
+                        <span class="summary-icon">🛍️</span>
+                    </div>
+                    <p class="summary-number" id="productos-total">0</p>
+                    <p class="summary-extra">0 con bajo stock</p>
                 </div>
 
             </section>
@@ -100,23 +137,92 @@
             <!-- Gráficos -->
             <section class="charts-section">
                 <div class="chart-card">
-                    <h3 class="chart-title">Ventas totales por mes</h3>
-                    <img src="img/chart-bar.png" alt="Gráfico de ventas" class="chart-image">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Ventas totales por mes</h3>
+                        <span class="chart-pill">Últimos 6 meses</span>
+                    </div>
+                    <div class="chart-body">
+                        <img src="img/chart-bar.png" alt="Gráfico de ventas" class="chart-image">
+                    </div>
                 </div>
 
                 <div class="chart-card">
-                    <h3 class="chart-title">Distribución de ventas por categoría</h3>
-                    <img src="img/chart-pie.png" alt="Gráfico de categorías" class="chart-image">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Distribución de ventas por categoría</h3>
+                        <span class="chart-pill">Colecciones</span>
+                    </div>
+                    <div class="chart-body">
+                        <img src="img/chart-pie.png" alt="Gráfico de categorías" class="chart-image">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actividad reciente -->
+            <section class="activity-section">
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h3>Últimas ventas</h3>
+                    </div>
+                    <div class="activity-body">
+                        <table class="table table-sm table-borderless align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Método</th>
+                                    <th class="text-end">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-ultimas-ventas">
+                                <!-- JS llenará las últimas 3 ventas -->
+                                <tr>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td class="text-end">$0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h3>Resumen rápido</h3>
+                    </div>
+                    <div class="activity-body quick-stats">
+                        <div class="quick-item">
+                            <span class="quick-label">Promedio por venta</span>
+                            <span class="quick-value" id="stat-promedio">$0</span>
+                        </div>
+                        <div class="quick-item">
+                            <span class="quick-label">Mejor categoría</span>
+                            <span class="quick-value" id="stat-mejor-categoria">—</span>
+                        </div>
+                        <div class="quick-item">
+                            <span class="quick-label">Producto más vendido</span>
+                            <span class="quick-value" id="stat-producto-mas-vendido">—</span>
+                        </div>
+                        <div class="quick-item">
+                            <span class="quick-label">Pedidos pendientes</span>
+                            <span class="quick-value" id="stat-pedidos-pendientes">0</span>
+                        </div>
+
+                    </div>
                 </div>
             </section>
 
         </main>
     </div>
 
+    <!-- JS de sesión/roles -->
+    <script src="js/auth.js"></script>
     <!-- JS principal -->
     <script src="js/main.js"></script>
 
     <!-- Bootstrap JS (opcional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -36,9 +36,11 @@ function renderTablaFacturas() {
             <td>${f.cliente || "Mostrador"}</td>
             <td>$${f.total != null ? f.total.toLocaleString("es-CO") : "0"}</td>
             <td>${f.metodoPago || "N/A"}</td>
-            <td>
+            <td class="solo-admin">
                 <button class="btn btn-sm btn-primary" onclick="verFactura(${f.id})">Ver</button>
-                <button class="btn btn-sm btn-danger ms-1" onclick="eliminarFactura(${f.id})">Eliminar</button>
+                <button class="btn btn-sm btn-danger ms-1 solo-admin" onclick="eliminarFactura(${f.id})">
+                    Eliminar
+                </button>
             </td>
         `;
 
@@ -104,7 +106,6 @@ function verFactura(id) {
 
     detalleDiv.innerHTML = html;
 }
-
 
 async function eliminarFactura(id) {
     if (!confirm("¿Seguro que deseas eliminar esta factura (venta)?")) return;

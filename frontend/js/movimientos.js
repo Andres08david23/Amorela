@@ -81,8 +81,10 @@ function renderTablaVentas() {
             <td>${v.cliente || ""}</td>
             <td>$${v.total != null ? v.total.toLocaleString("es-CO") : "0"}</td>
             <td>${v.metodoPago || "-"}</td>
-            <td>
-                <button class="btn btn-sm btn-danger" onclick="eliminarVenta(${v.id})">Eliminar</button>
+            <td class="solo-admin">
+                <button class="btn btn-sm btn-danger solo-admin" onclick="eliminarVenta(${v.id})">
+                    Eliminar
+                </button>
             </td>
         `;
         tbody.appendChild(tr);
@@ -211,8 +213,10 @@ function renderTablaGastos() {
             <td>${g.categoria || ""}</td>
             <td>${g.descripcion || ""}</td>
             <td>$${g.valor != null ? g.valor.toLocaleString("es-CO") : "0"}</td>
-            <td>
-                <button class="btn btn-sm btn-danger" onclick="eliminarGasto(${g.id})">Eliminar</button>
+            <td class="solo-admin">
+                <button class="btn btn-sm btn-danger solo-admin" onclick="eliminarGasto(${g.id})">
+                    Eliminar
+                </button>
             </td>
         `;
         tbody.appendChild(tr);

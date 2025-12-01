@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
 
     const form = document.getElementById("form-producto");
-    form.addEventListener("submit", onSubmitProducto);
+    // por si en alguna vista no existe el form:
+    if (form) {
+        form.addEventListener("submit", onSubmitProducto);
+    }
 });
 
 // Cargar productos desde el backend
@@ -40,9 +43,13 @@ function renderTablaProductos() {
             <td>${p.nombre}</td>
             <td>$${p.precio.toFixed(2)}</td>
             <td>${p.stock != null ? p.stock : ""}</td>
-            <td>
-                <button class="btn btn-sm btn-secondary" onclick="editarProducto(${p.id})">Editar</button>
-                <button class="btn btn-sm btn-danger ms-1" onclick="eliminarProducto(${p.id})">Eliminar</button>
+            <td class="solo-admin">
+                <button class="btn btn-sm btn-secondary solo-admin" onclick="editarProducto(${p.id})">
+                    Editar
+                </button>
+                <button class="btn btn-sm btn-danger ms-1 solo-admin" onclick="eliminarProducto(${p.id})">
+                    Eliminar
+                </button>
             </td>
         `;
 

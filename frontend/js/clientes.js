@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarClientes();
 
     const form = document.getElementById("form-cliente");
-    form.addEventListener("submit", onSubmitCliente);
+    if (form) {
+        form.addEventListener("submit", onSubmitCliente);
+    }
 });
 
 // Cargar clientes desde el backend
@@ -29,6 +31,8 @@ async function cargarClientes() {
 // Pintar tabla
 function renderTablaClientes() {
     const tbody = document.querySelector("#tabla-clientes tbody");
+    if (!tbody) return;
+
     tbody.innerHTML = "";
 
     clientesCache.forEach(c => {
@@ -40,9 +44,9 @@ function renderTablaClientes() {
             <td>${c.telefono || ""}</td>
             <td>${c.email || ""}</td>
             <td>${c.tipo || ""}</td>
-            <td>
-                <button class="btn btn-sm btn-secondary" onclick="editarCliente(${c.id})">Editar</button>
-                <button class="btn btn-sm btn-danger ms-1" onclick="eliminarCliente(${c.id})">Eliminar</button>
+            <td class="solo-admin">
+                <button class="btn btn-sm btn-secondary solo-admin" onclick="editarCliente(${c.id})">Editar</button>
+                <button class="btn btn-sm btn-danger ms-1 solo-admin" onclick="eliminarCliente(${c.id})">Eliminar</button>
             </td>
         `;
 

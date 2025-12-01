@@ -1,52 +1,57 @@
 const API_LOGIN = "http://localhost:8080/api/auth/login";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("form-login");
-    const mensaje = document.getElementById("mensaje-error");
+    const form = document.getElementById("form-login");   // <-- MISMO ID QUE EN EL HTML
+    const msgError = document.getElementById("mensaje-error");
+
+    if (!form) {
+        console.error("No se encontró el formulario de login.");
+        return;
+    }
 
     form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // evita ?usuario=... en la URL
 
-        const username = document.getElementById("usuario").value.trim();
-        const password = document.getElementById("contrasena").value.trim();
+        if (msgError) msgError.textContent = "";
 
-        mensaje.textContent = "";
+        const usuario = document.getElementById("usuario").value.trim();
+        const contrasena = document.getElementById("contrasena").value.trim();
+
+        if (!usuario || !contrasena) {
+            if (msgError) msgError.textContent = "Debes ingresar usuario y contraseña.";
+            return;
+        }
 
         try {
             const res = await fetch(API_LOGIN, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ username, password })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ usuario, contrasena })
             });
 
             if (!res.ok) {
-                mensaje.textContent = "Error de servidor";
+                if (msgError) msgError.textContent = "No se pudo conectar con el servidor.";
                 return;
             }
 
             const data = await res.json();
+            console.log("Respuesta login:", data);
 
-            if (!data.ok) {
-                mensaje.textContent = data.message || "Usuario o contraseña inválidos";
+            if (!data.success) {
+                if (msgError) msgError.textContent = data.message || "Credenciales inválidas.";
                 return;
             }
 
-            // guardar info en localStorage
-            localStorage.setItem("usuario", username);
+            // Guardamos usuario y rol
+            localStorage.setItem("usuario", data.username);
             localStorage.setItem("rol", data.role);
 
-            // redirigir según rol
-            if (data.role === "ADMIN") {
-                window.location.href = "inicio.html";
-            } else {
-                window.location.href = "productos.html";
-            }
+            // Redirigimos al dashboard
+            window.location.href = "inicio.html";
 
-        } catch (error) {
-            console.error(error);
-            mensaje.textContent = "No se pudo conectar con el servidor";
+        } catch (err) {
+            console.error("Error en login", err);
+            if (msgError) msgError.textContent = "Error de conexión con el servidor.";
         }
     });
 });

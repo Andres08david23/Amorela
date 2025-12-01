@@ -42,10 +42,28 @@
 
         <!-- CONTENIDO -->
         <main class="main-content">
+            <!-- Menú del usuario -->
+            <div id="menu-usuario" class="user-menu d-none">
+                <button id="btn-logout" class="dropdown-item">Cerrar sesión</button>
+            </div>
+
             <header class="topbar">
-                <div>
+                <div class="topbar-left">
                     <h1 class="dashboard-title">Movimientos</h1>
-                    <h2 class="dashboard-subtitle">Ingresos y gastos del negocio</h2>
+                    <p class="dashboard-subtitle">Ingresos y gastos de Amorela</p>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="topbar-greeting">
+                        <span class="greeting-small">Hola,</span>
+                        <span class="greeting-name" id="nombre-usuario">Valentina</span>
+                        <span class="greeting-role" id="rol-usuario">Administradora</span>
+                    </div>
+                    <div class="topbar-actions">
+                        <button class="icon-button" title="Notificaciones">🔔</button>
+                        <button class="icon-button" title="Mensajes">💬</button>
+                        <div class="user-avatar" title="Usuario">V</div>
+                    </div>
                 </div>
             </header>
 
@@ -103,7 +121,6 @@
                         </form>
                     </section>
 
-
                     <section>
                         <h3 class="mb-3">Listado de ingresos</h3>
                         <div class="table-responsive">
@@ -114,7 +131,7 @@
                                         <th>Cliente</th>
                                         <th>Total</th>
                                         <th>Método pago</th>
-                                        <th>Acciones</th>
+                                        <th class="solo-admin">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -163,7 +180,7 @@
                                         <th>Categoría</th>
                                         <th>Descripción</th>
                                         <th>Valor</th>
-                                        <th>Acciones</th>
+                                        <th class="solo-admin">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -178,7 +195,10 @@
         </main>
     </div>
 
+    <!-- JS de sesión/roles -->
+    <script src="js/auth.js"></script>
     <script src="js/movimientos.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

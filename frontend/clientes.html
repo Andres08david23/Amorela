@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,102 +9,123 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
+
 <body>
-<div class="layout">
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <img src="img/logo.png" alt="Logo Amorela" class="sidebar-logo">
-        </div>
-
-        <nav class="sidebar-menu">
-            <a href="inicio.html" class="menu-item">
-                <span class="menu-icon">🏠</span><span class="menu-text">Inicio</span>
-            </a>
-            <a href="productos.html" class="menu-item">
-                <span class="menu-icon">📦</span><span class="menu-text">Productos</span>
-            </a>
-            <a href="movimientos.html" class="menu-item">
-                <span class="menu-icon">💰</span><span class="menu-text">Movimientos</span>
-            </a>
-            <a href="facturacion.html" class="menu-item">
-                <span class="menu-icon">🧾</span><span class="menu-text">Facturación</span>
-            </a>
-            <a href="reportes.html" class="menu-item">
-                <span class="menu-icon">📊</span><span class="menu-text">Reportes</span>
-            </a>
-            <a href="clientes.html" class="menu-item active">
-                <span class="menu-icon">👥</span><span class="menu-text">Clientes</span>
-            </a>
-        </nav>
-    </aside>
-
-    <!-- CONTENIDO -->
-    <main class="main-content">
-        <header class="topbar">
-            <div>
-                <h1 class="dashboard-title">Clientes</h1>
-                <h2 class="dashboard-subtitle">Gestión de clientes del negocio</h2>
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="img/logo.png" alt="Logo Amorela" class="sidebar-logo">
             </div>
-        </header>
 
-        <!-- Formulario cliente -->
-        <section class="mb-4">
-            <h3 class="mb-3">Registrar / editar cliente</h3>
-            <form id="form-cliente" class="row g-3">
-                <input type="hidden" id="cliente-id">
+            <nav class="sidebar-menu">
+                <a href="inicio.html" class="menu-item">
+                    <span class="menu-icon">🏠</span><span class="menu-text">Inicio</span>
+                </a>
+                <a href="productos.html" class="menu-item">
+                    <span class="menu-icon">📦</span><span class="menu-text">Productos</span>
+                </a>
+                <a href="movimientos.html" class="menu-item">
+                    <span class="menu-icon">💰</span><span class="menu-text">Movimientos</span>
+                </a>
+                <a href="facturacion.html" class="menu-item">
+                    <span class="menu-icon">🧾</span><span class="menu-text">Facturación</span>
+                </a>
+                <a href="reportes.html" class="menu-item">
+                    <span class="menu-icon">📊</span><span class="menu-text">Reportes</span>
+                </a>
+                <a href="clientes.html" class="menu-item active">
+                    <span class="menu-icon">👥</span><span class="menu-text">Clientes</span>
+                </a>
+            </nav>
+        </aside>
 
-                <div class="col-md-4">
-                    <label class="form-label" for="cliente-nombre">Nombre completo</label>
-                    <input type="text" id="cliente-nombre" class="form-control" required>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label" for="cliente-telefono">Teléfono</label>
-                    <input type="text" id="cliente-telefono" class="form-control">
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label" for="cliente-email">Email</label>
-                    <input type="email" id="cliente-email" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="cliente-direccion">Dirección</label>
-                    <input type="text" id="cliente-direccion" class="form-control">
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label" for="cliente-tipo">Tipo de cliente</label>
-                    <input type="text" id="cliente-tipo" class="form-control" placeholder="Frecuente, nuevo...">
-                </div>
-                <div class="col-md-3 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary w-100">Guardar</button>
-                </div>
-            </form>
-        </section>
-
-        <!-- Tabla clientes -->
-        <section>
-            <h3 class="mb-3">Listado de clientes</h3>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm" id="tabla-clientes">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th>Email</th>
-                        <th>Tipo</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- JS llenará esto -->
-                    </tbody>
-                </table>
+        <!-- CONTENIDO -->
+        <main class="main-content">
+            <!-- Menú del usuario -->
+            <div id="menu-usuario" class="user-menu d-none">
+                <button id="btn-logout" class="dropdown-item">Cerrar sesión</button>
             </div>
-        </section>
-    </main>
-</div>
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1 class="dashboard-title">Clientes</h1>
+                    <p class="dashboard-subtitle">Gestión de clientes de Amorela</p>
+                </div>
 
-<script src="js/clientes.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                <div class="topbar-right">
+                    <div class="topbar-greeting">
+                        <span class="greeting-small">Hola,</span>
+                        <span class="greeting-name" id="nombre-usuario">Valentina</span>
+                        <span class="greeting-role" id="rol-usuario">Administradora</span>
+                    </div>
+                    <div class="topbar-actions">
+                        <button class="icon-button" title="Notificaciones">🔔</button>
+                        <button class="icon-button" title="Mensajes">💬</button>
+                        <div class="user-avatar" title="Usuario">V</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Formulario cliente (SOLO ADMIN) -->
+            <section class="mb-4 solo-admin">
+                <h3 class="mb-3">Registrar / editar cliente</h3>
+                <form id="form-cliente" class="row g-3">
+                    <input type="hidden" id="cliente-id">
+
+                    <div class="col-md-4">
+                        <label class="form-label" for="cliente-nombre">Nombre completo</label>
+                        <input type="text" id="cliente-nombre" class="form-control" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="cliente-telefono">Teléfono</label>
+                        <input type="text" id="cliente-telefono" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="cliente-email">Email</label>
+                        <input type="email" id="cliente-email" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="cliente-direccion">Dirección</label>
+                        <input type="text" id="cliente-direccion" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="cliente-tipo">Tipo de cliente</label>
+                        <input type="text" id="cliente-tipo" class="form-control" placeholder="Frecuente, nuevo...">
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Tabla clientes -->
+            <section>
+                <h3 class="mb-3">Listado de clientes</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" id="tabla-clientes">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Email</th>
+                                <th>Tipo</th>
+                                <th class="solo-admin">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- JS llenará esto -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JS de sesión/roles -->
+    <script src="js/auth.js"></script>
+    <script src="js/clientes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
