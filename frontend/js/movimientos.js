@@ -1,12 +1,15 @@
 const API_VENTAS = "http://localhost:8080/api/ventas";
 const API_GASTOS = "http://localhost:8080/api/gastos";
+const API_PRODUCTOS = "http://localhost:8080/api/productos";
 
 let ventasCache = [];
 let gastosCache = [];
+let productosCache = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarVentas();
     cargarGastos();
+    cargarProductosParaVentas();
 
     const formVenta = document.getElementById("form-venta");
     const formGasto = document.getElementById("form-gasto");
@@ -14,13 +17,40 @@ document.addEventListener("DOMContentLoaded", () => {
     if (formVenta) formVenta.addEventListener("submit", onSubmitVenta);
     if (formGasto) formGasto.addEventListener("submit", onSubmitGasto);
 
-    // poner fecha de hoy por defecto
     const hoy = new Date().toISOString().substring(0, 10);
     const ventaFecha = document.getElementById("venta-fecha");
     const gastoFecha = document.getElementById("gasto-fecha");
     if (ventaFecha) ventaFecha.value = hoy;
     if (gastoFecha) gastoFecha.value = hoy;
 });
+
+/* ===================== PRODUCTOS PARA VENTAS ===================== */
+
+async function cargarProductosParaVentas() {
+    try {
+        const res = await fetch(API_PRODUCTOS);
+        if (!res.ok) {
+            console.error("Error al cargar productos para ventas");
+            return;
+        }
+
+        productosCache = await res.json();
+        const select = document.getElementById("venta-producto");
+        if (!select) return;
+
+        // Limpiar y volver a llenar
+        select.innerHTML = `<option value="">Seleccione un producto</option>`;
+
+        productosCache.forEach(p => {
+            const opt = document.createElement("option");
+            opt.value = p.id;
+            opt.textContent = `${p.nombre} - $${p.precio.toLocaleString("es-CO")}`;
+            select.appendChild(opt);
+        });
+    } catch (err) {
+        console.error("Error de conexión al cargar productos", err);
+    }
+}
 
 /* ===================== VENTAS (INGRESOS) ===================== */
 
@@ -49,7 +79,7 @@ function renderTablaVentas() {
         tr.innerHTML = `
             <td>${v.fecha || ""}</td>
             <td>${v.cliente || ""}</td>
-            <td>$${v.total != null ? v.total.toFixed(2) : "0.00"}</td>
+            <td>$${v.total != null ? v.total.toLocaleString("es-CO") : "0"}</td>
             <td>${v.metodoPago || "-"}</td>
             <td>
                 <button class="btn btn-sm btn-danger" onclick="eliminarVenta(${v.id})">Eliminar</button>
@@ -64,15 +94,50 @@ async function onSubmitVenta(e) {
 
     const cliente = document.getElementById("venta-cliente").value.trim() || "Mostrador";
     const fecha = document.getElementById("venta-fecha").value;
-    const totalValor = document.getElementById("venta-total").value;
-    const total = parseFloat(totalValor);
+    const metodoPago = document.getElementById("venta-metodo").value.trim() || "N/A";
 
-    if (isNaN(total)) {
-        alert("Debes ingresar un total válido.");
+    const productoIdStr = document.getElementById("venta-producto").value;
+    const cantidadStr = document.getElementById("venta-cantidad").value;
+
+    if (!productoIdStr) {
+        alert("Debes seleccionar un producto.");
         return;
     }
 
-    const payload = { cliente, fecha, total };
+    const cantidad = parseInt(cantidadStr);
+    if (isNaN(cantidad) || cantidad <= 0) {
+        alert("La cantidad debe ser mayor que cero.");
+        return;
+    }
+
+    const productoId = parseInt(productoIdStr);
+    const producto = productosCache.find(p => p.id === productoId);
+
+    if (!producto) {
+        alert("Producto no encontrado.");
+        return;
+    }
+
+    const precioUnitario = producto.precio;
+    const subtotal = precioUnitario * cantidad;
+
+    // mini DetalleVenta (solo un producto por venta, por ahora)
+    const detalle = {
+        productoId: producto.id,
+        nombreProducto: producto.nombre,
+        cantidad: cantidad,
+        precioUnitario: precioUnitario,
+        subtotal: subtotal
+    };
+
+    const payload = {
+        cliente,
+        fecha,
+        metodoPago,
+        // total será recalculado en el backend, pero lo enviamos igual
+        total: subtotal,
+        detalles: [detalle]
+    };
 
     try {
         const res = await fetch(API_VENTAS, {
@@ -145,7 +210,7 @@ function renderTablaGastos() {
             <td>${g.fecha || ""}</td>
             <td>${g.categoria || ""}</td>
             <td>${g.descripcion || ""}</td>
-            <td>$${g.valor != null ? g.valor.toFixed(2) : "0.00"}</td>
+            <td>$${g.valor != null ? g.valor.toLocaleString("es-CO") : "0"}</td>
             <td>
                 <button class="btn btn-sm btn-danger" onclick="eliminarGasto(${g.id})">Eliminar</button>
             </td>

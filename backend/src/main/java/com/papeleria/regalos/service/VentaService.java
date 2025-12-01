@@ -32,13 +32,24 @@ public class VentaService {
     }
 
     public Venta add(Venta v) {
-        v.setId(sequence.getAndIncrement());
-        if (v.getMetodoPago() == null || v.getMetodoPago().isBlank()) {
-            v.setMetodoPago("N/A");
-        }
-        ventas.add(v);
-        return v;
+    v.setId(sequence.getAndIncrement());
+    if (v.getMetodoPago() == null || v.getMetodoPago().isBlank()) {
+        v.setMetodoPago("N/A");
     }
+
+    // NUEVO: si vienen detalles, recalculamos el total a partir de ellos
+    if (v.getDetalles() != null && !v.getDetalles().isEmpty()) {
+        double totalCalculado = 0.0;
+        for (var det : v.getDetalles()) {
+            totalCalculado += det.getSubtotal();
+        }
+        v.setTotal(totalCalculado);
+    }
+
+    ventas.add(v);
+    return v;
+}
+
 
     public Venta update(Long id, Venta datos) {
         Venta existing = getById(id);

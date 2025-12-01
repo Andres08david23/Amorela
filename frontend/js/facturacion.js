@@ -52,19 +52,59 @@ function verFactura(id) {
 
     if (!factura || !detalleDiv) return;
 
-    detalleDiv.innerHTML = `
+    let html = `
         <h4>Factura N° ${factura.id}</h4>
         <p><strong>Fecha:</strong> ${factura.fecha || "-"}</p>
         <p><strong>Cliente:</strong> ${factura.cliente || "Mostrador"}</p>
         <p><strong>Método de pago:</strong> ${factura.metodoPago || "N/A"}</p>
         <hr>
-        <p><strong>Total:</strong> $${factura.total != null ? factura.total.toLocaleString("es-CO") : "0"}</p>
-        <p class="text-muted mb-0">
-            Nota: en esta versión del sistema, la factura muestra el total de la venta registrada en Movimientos.
-            Si el proyecto evoluciona, aquí podrías mostrar el detalle por producto (DetalleVenta).
-        </p>
     `;
+
+    if (factura.detalles && factura.detalles.length > 0) {
+        html += `
+            <h5>Detalle de productos</h5>
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio unitario</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        factura.detalles.forEach(d => {
+            html += `
+                <tr>
+                    <td>${d.nombreProducto || ""}</td>
+                    <td>${d.cantidad || 0}</td>
+                    <td>$${d.precioUnitario != null ? d.precioUnitario.toLocaleString("es-CO") : "0"}</td>
+                    <td>$${d.subtotal != null ? d.subtotal.toLocaleString("es-CO") : "0"}</td>
+                </tr>
+            `;
+        });
+
+        html += `
+                    </tbody>
+                </table>
+            </div>
+        `;
+    } else {
+        html += `
+            <p class="text-muted">Esta factura no tiene detalle de productos registrado (solo total).</p>
+        `;
+    }
+
+    html += `
+        <p class="mt-2"><strong>Total:</strong> $${factura.total != null ? factura.total.toLocaleString("es-CO") : "0"}</p>
+    `;
+
+    detalleDiv.innerHTML = html;
 }
+
 
 async function eliminarFactura(id) {
     if (!confirm("¿Seguro que deseas eliminar esta factura (venta)?")) return;

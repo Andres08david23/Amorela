@@ -1,12 +1,17 @@
 package com.papeleria.regalos.model;
 
+import java.util.List;
+
 public class Venta {
 
     private Long id;
-    private String fecha;      // por simplicidad, String tipo "2025-11-30"
-    private String cliente;    // nombre del cliente o "Mostrador"
+    private String fecha;
+    private String cliente;
     private double total;
-    private String metodoPago; // opcional
+    private String metodoPago;
+
+    // NUEVO: lista de detalles
+    private List<DetalleVenta> detalles;
 
     public Venta() {
     }
@@ -33,4 +38,7 @@ public class Venta {
 
     public String getMetodoPago() { return metodoPago; }
     public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
+
+    public List<DetalleVenta> getDetalles() { return detalles; }
+    public void setDetalles(List<DetalleVenta> detalles) { this.detalles = detalles; }
 }
