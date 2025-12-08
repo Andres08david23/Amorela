@@ -1,36 +1,69 @@
 package com.papeleria.regalos.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "gastos")
 public class Gasto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String fecha;
+
+    private String fecha;       // por simplicidad String (YYYY-MM-DD)
     private String categoria;
     private String descripcion;
-    private double valor;
+    private Double valor;
 
     public Gasto() {
     }
 
-    public Gasto(Long id, String fecha, String categoria, String descripcion, double valor) {
-        this.id = id;
+    public Gasto(String fecha, String categoria, String descripcion, Double valor) {
         this.fecha = fecha;
         this.categoria = categoria;
         this.descripcion = descripcion;
         this.valor = valor;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // GETTERS y SETTERS
 
-    public String getFecha() { return fecha; }
-    public void setFecha(String fecha) { this.fecha = fecha; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getCategoria() { return categoria; }
-    public void setCategoria(String categoria) { this.categoria = categoria; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public String getFecha() {
+        return fecha;
+    }
 
-    public double getValor() { return valor; }
-    public void setValor(double valor) { this.valor = valor; }
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
 }

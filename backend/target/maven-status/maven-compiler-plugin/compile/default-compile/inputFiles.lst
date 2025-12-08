@@ -11,6 +11,10 @@ C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\r
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Product.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Venta.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\PapeleriaApplication.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\ClienteRepository.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\GastoRepository.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\ProductRepository.java
+C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\VentaRepository.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\AuthService.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\ClienteService.java
 C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\GastoService.java

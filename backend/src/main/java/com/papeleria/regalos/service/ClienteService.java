@@ -1,62 +1,52 @@
 package com.papeleria.regalos.service;
 
 import com.papeleria.regalos.model.Cliente;
+import com.papeleria.regalos.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class ClienteService {
 
-    private final List<Cliente> clientes = new ArrayList<>();
-    private final AtomicLong sequence = new AtomicLong(1);
+    private final ClienteRepository clienteRepository;
 
-    public ClienteService() {
-        // Clientes de prueba
-        clientes.add(new Cliente(sequence.getAndIncrement(), "María Pérez", "3001234567",
-                "maria@example.com", "Cúcuta", "Frecuente"));
-        clientes.add(new Cliente(sequence.getAndIncrement(), "Juan Gómez", "3019876543",
-                "juan@example.com", "Villa del Rosario", "Ocasional"));
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
 
+    // Obtener todos los clientes
     public List<Cliente> getAll() {
-        return clientes;
+        return clienteRepository.findAll();
     }
 
+    // Obtener uno por id
     public Cliente getById(Long id) {
-        Optional<Cliente> opt = clientes.stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst();
-        return opt.orElse(null);
+        return clienteRepository.findById(id).orElse(null);
     }
 
+    // Crear cliente
     public Cliente add(Cliente c) {
-        c.setId(sequence.getAndIncrement());
-        clientes.add(c);
-        return c;
+        c.setId(null); // que la BD genere el id
+        return clienteRepository.save(c);
     }
 
-    public Cliente update(Long id, Cliente datos) {
-        Cliente existing = getById(id);
-        if (existing == null) {
-            return null;
-        }
-
-        if (datos.getNombre() != null) {
-            existing.setNombre(datos.getNombre());
-        }
-        existing.setTelefono(datos.getTelefono());
-        existing.setEmail(datos.getEmail());
-        existing.setDireccion(datos.getDireccion());
-        existing.setTipo(datos.getTipo());
-
-        return existing;
+    // Actualizar cliente
+    public Cliente update(Long id, Cliente c) {
+        return clienteRepository.findById(id)
+                .map(existente -> {
+                    existente.setNombre(c.getNombre());
+                    existente.setTelefono(c.getTelefono());
+                    existente.setEmail(c.getEmail());
+                    existente.setDireccion(c.getDireccion());
+                    existente.setTipo(c.getTipo());
+                    return clienteRepository.save(existente);
+                })
+                .orElse(null);
     }
 
-    public boolean delete(Long id) {
-        return clientes.removeIf(c -> c.getId().equals(id));
+    // Eliminar cliente
+    public void delete(Long id) {
+        clienteRepository.deleteById(id);
     }
 }

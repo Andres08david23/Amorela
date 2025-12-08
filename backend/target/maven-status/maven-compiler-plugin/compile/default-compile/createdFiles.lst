@@ -1,12 +1,16 @@
 com\papeleria\regalos\service\GastoService.class
+com\papeleria\regalos\repository\ProductRepository.class
 com\papeleria\regalos\service\ClienteService.class
 com\papeleria\regalos\controller\VentaController.class
+com\papeleria\regalos\repository\GastoRepository.class
 com\papeleria\regalos\model\DetalleVenta.class
 com\papeleria\regalos\model\Product.class
 com\papeleria\regalos\controller\ProductController.class
 com\papeleria\regalos\model\Gasto.class
 com\papeleria\regalos\controller\AuthController.class
 com\papeleria\regalos\controller\GastoController.class
+com\papeleria\regalos\repository\ClienteRepository.class
+com\papeleria\regalos\repository\VentaRepository.class
 com\papeleria\regalos\model\LoginRequest.class
 com\papeleria\regalos\service\VentaService.class
 com\papeleria\regalos\service\ProductService.class

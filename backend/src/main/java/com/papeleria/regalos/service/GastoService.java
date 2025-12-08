@@ -1,59 +1,51 @@
 package com.papeleria.regalos.service;
 
 import com.papeleria.regalos.model.Gasto;
+import com.papeleria.regalos.repository.GastoRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class GastoService {
 
-    private final List<Gasto> gastos = new ArrayList<>();
-    private final AtomicLong sequence = new AtomicLong(1);
+    private final GastoRepository gastoRepository;
 
-    public GastoService() {
-        // Gastos de prueba
-        gastos.add(new Gasto(sequence.getAndIncrement(), "2025-11-29", "Servicios", "Recibo de luz", 120000));
-        gastos.add(new Gasto(sequence.getAndIncrement(), "2025-11-29", "Insumos", "Compra de papel y tinta", 80000));
+    public GastoService(GastoRepository gastoRepository) {
+        this.gastoRepository = gastoRepository;
     }
 
+    // Obtener todos los gastos
     public List<Gasto> getAll() {
-        return gastos;
+        return gastoRepository.findAll();
     }
 
+    // Obtener uno por id
     public Gasto getById(Long id) {
-        Optional<Gasto> opt = gastos.stream()
-                .filter(g -> g.getId().equals(id))
-                .findFirst();
-        return opt.orElse(null);
+        return gastoRepository.findById(id).orElse(null);
     }
 
+    // Crear gasto
     public Gasto add(Gasto g) {
-        g.setId(sequence.getAndIncrement());
-        gastos.add(g);
-        return g;
+        g.setId(null); // que la BD genere id
+        return gastoRepository.save(g);
     }
 
-    public Gasto update(Long id, Gasto datos) {
-        Gasto existing = getById(id);
-        if (existing == null) {
-            return null;
-        }
-
-        if (datos.getFecha() != null) {
-            existing.setFecha(datos.getFecha());
-        }
-        existing.setCategoria(datos.getCategoria());
-        existing.setDescripcion(datos.getDescripcion());
-        existing.setValor(datos.getValor());
-
-        return existing;
+    // Actualizar gasto
+    public Gasto update(Long id, Gasto g) {
+        return gastoRepository.findById(id)
+                .map(existente -> {
+                    existente.setFecha(g.getFecha());
+                    existente.setCategoria(g.getCategoria());
+                    existente.setDescripcion(g.getDescripcion());
+                    existente.setValor(g.getValor());
+                    return gastoRepository.save(existente);
+                })
+                .orElse(null);
     }
 
-    public boolean delete(Long id) {
-        return gastos.removeIf(g -> g.getId().equals(id));
+    // Eliminar gasto
+    public void delete(Long id) {
+        gastoRepository.deleteById(id);
     }
 }

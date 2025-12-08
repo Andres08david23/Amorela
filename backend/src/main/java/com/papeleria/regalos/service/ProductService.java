@@ -1,60 +1,55 @@
 package com.papeleria.regalos.service;
 
 import com.papeleria.regalos.model.Product;
+import com.papeleria.regalos.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class ProductService {
 
-    private final List<Product> productos = new ArrayList<>();
-    private final AtomicLong sequence = new AtomicLong(1);
+    private final ProductRepository productRepository;
 
-    public ProductService() {
-        // Productos de prueba en memoria
-        productos.add(new Product(sequence.getAndIncrement(), "Cuaderno grande", 8000, 20));
-        productos.add(new Product(sequence.getAndIncrement(), "Lapicero azul", 1500, 100));
-        productos.add(new Product(sequence.getAndIncrement(), "Peluche oso", 25000, 10));
+    // Inyección por constructor
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
+    // READ - todos
     public List<Product> getAll() {
-        return productos;
+        return productRepository.findAll();
     }
 
+    // READ - uno
     public Product getById(Long id) {
-        Optional<Product> opt = productos.stream()
-                .filter(p -> p.getId().equals(id))
-                .findFirst();
-        return opt.orElse(null);
+        return productRepository.findById(id).orElse(null);
     }
 
+    // CREATE
     public Product add(Product p) {
-        p.setId(sequence.getAndIncrement());
+        // por si viene con id desde el front, lo ignoramos y dejamos que la BD genere uno
+        p.setId(null);
         if (p.getStock() == null) {
             p.setStock(0);
         }
-        productos.add(p);
-        return p;
+        return productRepository.save(p);
     }
 
-    public Product update(Long id, Product datos) {
-        Product existing = getById(id);
-        if (existing == null) {
-            return null;
-        }
-        if (datos.getNombre() != null) {
-            existing.setNombre(datos.getNombre());
-        }
-        existing.setPrecio(datos.getPrecio());
-        existing.setStock(datos.getStock());
-        return existing;
+    // UPDATE
+    public Product update(Long id, Product p) {
+        return productRepository.findById(id)
+                .map(existente -> {
+                    existente.setNombre(p.getNombre());
+                    existente.setPrecio(p.getPrecio());
+                    existente.setStock(p.getStock());
+                    return productRepository.save(existente);
+                })
+                .orElse(null);
     }
 
-    public boolean delete(Long id) {
-        return productos.removeIf(p -> p.getId().equals(id));
+    // DELETE
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
 }
