@@ -43,9 +43,9 @@
         <!-- CONTENIDO -->
         <main class="main-content">
             <!-- Menú del usuario -->
-        <div id="menu-usuario" class="user-menu d-none">
-            <button id="btn-logout" class="dropdown-item">Cerrar sesión</button>
-        </div>
+            <div id="menu-usuario" class="user-menu d-none">
+                <button id="btn-logout" class="dropdown-item">Cerrar sesión</button>
+            </div>
 
             <header class="topbar">
                 <div class="topbar-left">
@@ -70,23 +70,28 @@
             <!-- Formulario crear / editar (SOLO ADMIN) -->
             <section class="mb-4 solo-admin">
                 <h3 class="mb-3">Registrar / editar producto</h3>
-                <form id="form-producto" class="row g-3">
+
+                <form id="form-producto" class="producto-grid">
+
                     <input type="hidden" id="producto-id">
 
-                    <div class="col-md-4">
-                        <label for="producto-nombre" class="form-label">Nombre</label>
+                    <div class="form-group">
+                        <label for="producto-nombre">Nombre</label>
                         <input type="text" id="producto-nombre" class="form-control" required>
                     </div>
-                    <div class="col-md-3">
-                        <label for="producto-precio" class="form-label">Precio unitario</label>
+
+                    <div class="form-group">
+                        <label for="producto-precio">Precio unitario</label>
                         <input type="number" id="producto-precio" class="form-control" min="0" step="0.01" required>
                     </div>
-                    <div class="col-md-3">
-                        <label for="producto-stock" class="form-label">Stock</label>
+
+                    <div class="form-group">
+                        <label for="producto-stock">Stock</label>
                         <input type="number" id="producto-stock" class="form-control" min="0" step="1">
                     </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+
+                    <div class="form-group full">
+                        <button type="submit" class="btn btn-primary w-100">Guardar producto</button>
                     </div>
                 </form>
             </section>

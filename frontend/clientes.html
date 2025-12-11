@@ -69,31 +69,43 @@
             <!-- Formulario cliente (SOLO ADMIN) -->
             <section class="mb-4 solo-admin">
                 <h3 class="mb-3">Registrar / editar cliente</h3>
-                <form id="form-cliente" class="row g-3">
+
+                <form id="form-cliente">
                     <input type="hidden" id="cliente-id">
 
-                    <div class="col-md-4">
-                        <label class="form-label" for="cliente-nombre">Nombre completo</label>
-                        <input type="text" id="cliente-nombre" class="form-control" required>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label" for="cliente-telefono">Teléfono</label>
-                        <input type="text" id="cliente-telefono" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label" for="cliente-email">Email</label>
-                        <input type="email" id="cliente-email" class="form-control">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label" for="cliente-direccion">Dirección</label>
-                        <input type="text" id="cliente-direccion" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label" for="cliente-tipo">Tipo de cliente</label>
-                        <input type="text" id="cliente-tipo" class="form-control" placeholder="Frecuente, nuevo...">
-                    </div>
-                    <div class="col-md-3 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                    <div class="producto-grid">
+                        <div class="form-group">
+                            <label for="cliente-nombre">Nombre completo</label>
+                            <input type="text" id="cliente-nombre" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cliente-telefono">Teléfono</label>
+                            <input type="text" id="cliente-telefono" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cliente-email">Email</label>
+                            <input type="email" id="cliente-email" class="form-control">
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="cliente-direccion">Dirección</label>
+                            <input type="text" id="cliente-direccion" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cliente-tipo">Tipo de cliente</label>
+                            <input type="text" id="cliente-tipo" class="form-control" placeholder="Frecuente, nuevo...">
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Espacio vacío para que el botón quede alineado bonito -->
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success w-100" style="height: 45px;">Guardar</button>
+                        </div>
                     </div>
                 </form>
             </section>

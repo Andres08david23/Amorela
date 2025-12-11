@@ -88,35 +88,39 @@
                 <div class="tab-pane fade show active" id="ingresos" role="tabpanel">
                     <section class="mb-4">
                         <h3 class="mb-3">Registrar ingreso (venta rápida)</h3>
-                        <form id="form-venta" class="row g-3">
-                            <div class="col-md-4">
-                                <label class="form-label" for="venta-cliente">Cliente</label>
+                        <form id="form-venta" class="venta-grid">
+                            <div class="form-group">
+                                <label for="venta-cliente">Cliente</label>
                                 <input type="text" id="venta-cliente" class="form-control"
                                     placeholder="Mostrador / Cliente">
                             </div>
-                            <div class="col-md-3">
-                                <label class="form-label" for="venta-fecha">Fecha</label>
+
+                            <div class="form-group">
+                                <label for="venta-fecha">Fecha</label>
                                 <input type="date" id="venta-fecha" class="form-control">
                             </div>
-                            <div class="col-md-3">
-                                <label class="form-label" for="venta-metodo">Método de pago</label>
+
+                            <div class="form-group">
+                                <label for="venta-metodo">Método de pago</label>
                                 <input type="text" id="venta-metodo" class="form-control"
                                     placeholder="Efectivo, Nequi...">
                             </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label" for="venta-producto">Producto</label>
+                            <div class="form-group">
+                                <label for="venta-producto">Producto</label>
                                 <select id="venta-producto" class="form-select" required>
                                     <option value="">Seleccione un producto</option>
-                                    <!-- JS llenará las opciones -->
                                 </select>
                             </div>
-                            <div class="col-md-2">
-                                <label class="form-label" for="venta-cantidad">Cantidad</label>
+
+                            <div class="form-group">
+                                <label for="venta-cantidad">Cantidad</label>
                                 <input type="number" id="venta-cantidad" class="form-control" min="1" value="1">
                             </div>
-                            <div class="col-md-3 d-flex align-items-end">
+
+                            <div class="form-group full">
                                 <button type="submit" class="btn btn-success w-100">Guardar venta</button>
+                                  
                             </div>
                         </form>
                     </section>
@@ -146,27 +150,34 @@
                 <div class="tab-pane fade" id="gastos" role="tabpanel">
                     <section class="mb-4">
                         <h3 class="mb-3">Registrar gasto</h3>
-                        <form id="form-gasto" class="row g-3">
-                            <div class="col-md-3">
-                                <label class="form-label" for="gasto-fecha">Fecha</label>
+                        <form id="form-gasto" class="gasto-grid">
+
+                            <div class="form-group">
+                                <label for="gasto-fecha">Fecha</label>
                                 <input type="date" id="gasto-fecha" class="form-control">
                             </div>
-                            <div class="col-md-3">
-                                <label class="form-label" for="gasto-categoria">Categoría</label>
+
+                            <div class="form-group">
+                                <label for="gasto-categoria">Categoría</label>
                                 <input type="text" id="gasto-categoria" class="form-control"
                                     placeholder="Arriendo, servicios...">
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label" for="gasto-descripcion">Descripción</label>
+
+                            <div class="form-group full">
+                                <label for="gasto-descripcion">Descripción</label>
                                 <input type="text" id="gasto-descripcion" class="form-control">
                             </div>
-                            <div class="col-md-2">
-                                <label class="form-label" for="gasto-valor">Valor</label>
+
+                            <div class="form-group">
+                                <label for="gasto-valor">Valor</label>
                                 <input type="number" id="gasto-valor" class="form-control" min="0" step="0.01">
                             </div>
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-danger">Guardar gasto</button>
+
+                            <div class="form-group full d-flex justify-content-end">
+                                <button type="submit" class="btn btn-danger px-4">Guardar gasto</button>
+                                 
                             </div>
+
                         </form>
                     </section>
 
