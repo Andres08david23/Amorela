@@ -1,22 +1,22 @@
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\AuthController.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\ClienteController.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\GastoController.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\ProductController.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\controller\VentaController.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Cliente.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\DetalleVenta.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Gasto.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\LoginRequest.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\LoginResponse.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Product.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\model\Venta.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\PapeleriaApplication.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\ClienteRepository.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\GastoRepository.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\ProductRepository.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\repository\VentaRepository.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\AuthService.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\ClienteService.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\GastoService.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\ProductService.java
-C:\Users\Andre\OneDrive\Documentos\Amorela\backend\src\main\java\com\papeleria\regalos\service\VentaService.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\controller\AuthController.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\controller\ClienteController.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\controller\GastoController.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\controller\ProductController.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\controller\VentaController.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\model\Cliente.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\model\DetalleVenta.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\model\Gasto.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\model\LoginRequest.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\model\LoginResponse.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\model\Product.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\model\Venta.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\PapeleriaApplication.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\repository\ClienteRepository.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\repository\GastoRepository.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\repository\ProductRepository.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\repository\VentaRepository.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\service\AuthService.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\service\ClienteService.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\service\GastoService.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\service\ProductService.java
+C:\Users\ESRAN22B57\Documents\proyecto 2.0\Amorela\backend\src\main\java\com\papeleria\regalos\service\VentaService.java

@@ -575,6 +575,7 @@ input[type="password"]:focus {
 .producto-grid .full {
     grid-column: span 3;
 }
+<<<<<<< HEAD
 
 /* ==========================
    FACTURA / INVOICE
@@ -665,4 +666,104 @@ input[type="password"]:focus {
 .chart-body canvas {
     width: 100% !important;
     height: 100% !important;
+=======
+/* GRID PARA FORMULARIO DE PRODUCTOS */
+.producto-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.producto-grid .full {
+    grid-column: span 2;
+}
+
+.titulo-con-icono {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.titulo-con-icono .icono {
+    font-size: 2rem;
+}
+
+.titulo-con-icono h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.titulo-con-icono p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-title::after {
+    content: "";
+    flex-grow: 1;
+    height: 3px;
+    background: linear-gradient(to right, #c7c7c7, transparent);
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+/* Títulos mejorados (opción estilo 2 pulido) */
+.section-title {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #1d3557; /* Azul sobrio elegante */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.3px;
+    padding-left: 4px;
+}
+
+.section-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e4e4e4;
+}
+
+.section-title .emoji {
+    font-size: 1.8rem;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 8px 0;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+.section-icon {
+    font-size: 22px;
+}
+
+.section-text {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+>>>>>>> origin/danna
 }
