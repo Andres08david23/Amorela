@@ -65,11 +65,11 @@
 
         <!-- ========== CONTENIDO PRINCIPAL ========== -->
         <main class="main-content">
-            
-        <!-- Menú del usuario -->
-        <div id="menu-usuario" class="user-menu d-none">
-            <button id="btn-logout" class="dropdown-item">Cerrar sesión</button>
-        </div>
+
+            <!-- Menú del usuario -->
+            <div id="menu-usuario" class="user-menu d-none">
+                <button id="btn-logout" class="dropdown-item">Cerrar sesión</button>
+            </div>
 
             <!-- Barra superior -->
             <header class="topbar">
@@ -142,9 +142,10 @@
                         <span class="chart-pill">Últimos 6 meses</span>
                     </div>
                     <div class="chart-body">
-                        <img src="img/chart-bar.png" alt="Gráfico de ventas" class="chart-image">
+                        <canvas id="chart-ventas-mes"></canvas>
                     </div>
                 </div>
+
 
                 <div class="chart-card">
                     <div class="chart-header">
@@ -152,9 +153,11 @@
                         <span class="chart-pill">Colecciones</span>
                     </div>
                     <div class="chart-body">
-                        <img src="img/chart-pie.png" alt="Gráfico de categorías" class="chart-image">
+                        <canvas id="chart-ventas-categoria"></canvas>
                     </div>
                 </div>
+
+
             </section>
 
             <!-- Actividad reciente -->
@@ -216,13 +219,14 @@
         </main>
     </div>
 
-    <!-- JS de sesión/roles -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/inicio.js"></script>
+
     <script src="js/auth.js"></script>
-    <!-- JS principal -->
     <script src="js/main.js"></script>
 
-    <!-- Bootstrap JS (opcional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

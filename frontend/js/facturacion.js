@@ -1,10 +1,18 @@
 const API_VENTAS = "http://localhost:8080/api/ventas";
 
 let facturasCache = [];
+let facturaSeleccionada = null; 
+
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarFacturas();
+
+    const btnPdf = document.getElementById("btn-pdf");
+    if (btnPdf) {
+        btnPdf.addEventListener("click", descargarFacturaPDF);
+    }
 });
+
 
 async function cargarFacturas() {
     try {
@@ -54,58 +62,95 @@ function verFactura(id) {
 
     if (!factura || !detalleDiv) return;
 
+    // guardar selección + habilitar botón PDF
+    facturaSeleccionada = factura;
+    const btnPdf = document.getElementById("btn-pdf");
+    if (btnPdf) btnPdf.disabled = false;
+
     let html = `
-        <h4>Factura N° ${factura.id}</h4>
-        <p><strong>Fecha:</strong> ${factura.fecha || "-"}</p>
-        <p><strong>Cliente:</strong> ${factura.cliente || "Mostrador"}</p>
-        <p><strong>Método de pago:</strong> ${factura.metodoPago || "N/A"}</p>
-        <hr>
+        <div class="invoice-card">
+            <div class="invoice-header">
+                <div class="invoice-brand">
+                    <img src="img/logo.png" alt="Amorela" class="invoice-logo">
+                    <div>
+                        <p class="mb-0 fw-semibold">Amorela Papelería & Regalos</p>
+                        <small class="text-muted">Sistema de facturación</small>
+                    </div>
+                </div>
+                <div class="invoice-meta">
+                    <div><strong>Factura N°</strong> ${factura.id}</div>
+                    <div><strong>Fecha:</strong> ${factura.fecha || "-"}</div>
+                </div>
+            </div>
+
+            <hr class="mb-3">
+
+            <div class="invoice-client">
+                <p class="invoice-section-title">Datos del cliente</p>
+                <p class="mb-1"><strong>Nombre:</strong> ${factura.cliente || "Mostrador"}</p>
+                <p class="mb-0"><strong>Método de pago:</strong> ${factura.metodoPago || "N/A"}</p>
+            </div>
     `;
 
     if (factura.detalles && factura.detalles.length > 0) {
         html += `
-            <h5>Detalle de productos</h5>
-            <div class="table-responsive">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio unitario</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div class="mb-3">
+                <p class="invoice-section-title">Detalle de productos</p>
+                <div class="table-responsive">
+                    <table class="table table-sm invoice-products-table mb-2">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-end">Precio unitario</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
         `;
 
         factura.detalles.forEach(d => {
             html += `
                 <tr>
                     <td>${d.nombreProducto || ""}</td>
-                    <td>${d.cantidad || 0}</td>
-                    <td>$${d.precioUnitario != null ? d.precioUnitario.toLocaleString("es-CO") : "0"}</td>
-                    <td>$${d.subtotal != null ? d.subtotal.toLocaleString("es-CO") : "0"}</td>
+                    <td class="text-center">${d.cantidad || 0}</td>
+                    <td class="text-end">$${d.precioUnitario != null ? d.precioUnitario.toLocaleString("es-CO") : "0"}</td>
+                    <td class="text-end">$${d.subtotal != null ? d.subtotal.toLocaleString("es-CO") : "0"}</td>
                 </tr>
             `;
         });
 
         html += `
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         `;
     } else {
         html += `
-            <p class="text-muted">Esta factura no tiene detalle de productos registrado (solo total).</p>
+            <p class="invoice-note mb-3">
+                Esta factura no tiene detalle de productos registrado (solo total).
+            </p>
         `;
     }
 
     html += `
-        <p class="mt-2"><strong>Total:</strong> $${factura.total != null ? factura.total.toLocaleString("es-CO") : "0"}</p>
+            <div class="invoice-summary">
+                <div class="invoice-summary-row">
+                    <span class="invoice-summary-label">Total:</span>
+                    <span class="invoice-total">$${factura.total != null ? factura.total.toLocaleString("es-CO") : "0"}</span>
+                </div>
+            </div>
+
+            <p class="invoice-note mb-0">
+                Gracias por tu compra. Este documento es generado por el sistema de gestión Amorela.
+            </p>
+        </div>
     `;
 
     detalleDiv.innerHTML = html;
 }
+
 
 async function eliminarFactura(id) {
     if (!confirm("¿Seguro que deseas eliminar esta factura (venta)?")) return;
@@ -132,3 +177,47 @@ async function eliminarFactura(id) {
         alert("Error de conexión con el servidor.");
     }
 }
+
+async function descargarFacturaPDF() {
+    if (!facturaSeleccionada) {
+        alert("Primero selecciona una factura.");
+        return;
+    }
+
+    const detalleDiv = document.getElementById("detalle-factura");
+    if (!detalleDiv) return;
+
+    const { jsPDF } = window.jspdf;
+
+    html2canvas(detalleDiv, {
+        scale: 2,        
+        useCORS: true
+    }).then(canvas => {
+        const imgData = canvas.toDataURL("image/png");
+
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        const margin = 5; // 👈 margen pequeñito
+        let imgWidth = pageWidth - margin * 2;
+        let imgHeight = canvas.height * imgWidth / canvas.width;
+
+        // Si la imagen es más alta que la página, la ajustamos al alto
+        if (imgHeight > pageHeight - margin * 2) {
+            imgHeight = pageHeight - margin * 2;
+            imgWidth = canvas.width * imgHeight / canvas.height;
+        }
+
+        // Centrar horizontalmente
+        const x = (pageWidth - imgWidth) / 2;
+        const y = margin;
+
+        pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
+        pdf.save(`factura_${facturaSeleccionada.id}.pdf`);
+    }).catch(err => {
+        console.error("Error al generar PDF", err);
+        alert("Ocurrió un error al generar el PDF.");
+    });
+}
+

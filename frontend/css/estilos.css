@@ -575,3 +575,94 @@ input[type="password"]:focus {
 .producto-grid .full {
     grid-column: span 3;
 }
+
+/* ==========================
+   FACTURA / INVOICE
+   ========================== */
+
+.invoice-card {
+    width: 100%;              /* ocupa todo el ancho disponible */
+    max-width: 1100px;        /* un poco más ancha */
+    margin: 0 auto;           /* centrada horizontal */
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    padding: 32px 40px;       /* más padding = se ve más grande */
+    font-size: 1rem;          /* subir tamaño de fuente */
+    min-height: 420px;        /* asegura que no sea tan bajita */
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.invoice-logo {
+    height: 48px;             /* logo más grande */
+}
+
+.invoice-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* resto igual que antes */
+.invoice-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.invoice-meta {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.invoice-section-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.invoice-client,
+.invoice-summary {
+    margin-bottom: 14px;
+}
+
+.invoice-summary-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.invoice-summary-label {
+    margin-right: 8px;
+    font-weight: 600;
+}
+
+.invoice-total {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.invoice-note {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.invoice-products-table {
+    font-size: 0.9rem;
+}
+.chart-body {
+    height: 260px;          
+}
+
+.chart-body canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
