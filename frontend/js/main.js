@@ -115,21 +115,23 @@ function actualizarUltimasVentas(ventas) {
 
 /* ===================== RESUMEN RÁPIDO ===================== */
 
+/* ===================== RESUMEN RÁPIDO ===================== */
+
 function actualizarResumenRapido(ventas) {
     const statPromedio = document.getElementById("stat-promedio");
-    const statMejorCategoria = document.getElementById("stat-mejor-categoria");
+    const statClienteFrecuente = document.getElementById("stat-cliente-frecuente");
     const statProductoMasVendido = document.getElementById("stat-producto-mas-vendido");
-    const statPendientes = document.getElementById("stat-pedidos-pendientes");
+    const statPedidosTotales = document.getElementById("stat-pedidos-totales");
 
     if (!ventas || ventas.length === 0) {
         if (statPromedio) statPromedio.textContent = "$0";
-        if (statMejorCategoria) statMejorCategoria.textContent = "—";
+        if (statClienteFrecuente) statClienteFrecuente.textContent = "—";
         if (statProductoMasVendido) statProductoMasVendido.textContent = "—";
-        if (statPendientes) statPendientes.textContent = "0";
+        if (statPedidosTotales) statPedidosTotales.textContent = "0";
         return;
     }
 
-    // promedio por venta
+    // 1. Promedio por venta
     let totalIngresos = 0;
     ventas.forEach(v => {
         if (v.total != null) {
@@ -137,15 +139,12 @@ function actualizarResumenRapido(ventas) {
         }
     });
     const promedio = totalIngresos / ventas.length;
-
     if (statPromedio) statPromedio.textContent = formatearPesos(promedio);
 
-    // producto más vendido usando DetalleVenta (si existe)
+    // 2. Producto más vendido (usando DetalleVenta)
     const mapaProductos = {};
-
     ventas.forEach(v => {
         if (!v.detalles || v.detalles.length === 0) return;
-
         v.detalles.forEach(d => {
             if (!d.nombreProducto || d.cantidad == null) return;
             if (!mapaProductos[d.nombreProducto]) {
@@ -156,24 +155,40 @@ function actualizarResumenRapido(ventas) {
     });
 
     let productoMasVendido = "—";
-    let maxCantidad = 0;
-
+    let maxCantidadProd = 0;
     Object.entries(mapaProductos).forEach(([nombre, cant]) => {
-        if (cant > maxCantidad) {
-            maxCantidad = cant;
+        if (cant > maxCantidadProd) {
+            maxCantidadProd = cant;
             productoMasVendido = nombre;
         }
     });
-
     if (statProductoMasVendido) statProductoMasVendido.textContent = productoMasVendido;
 
-    // mejor categoría: aún no manejamos categorías en el modelo -> se deja "—"
-    if (statMejorCategoria) statMejorCategoria.textContent = "—";
+    // 3. Cliente más frecuente (por cantidad de ventas)
+    const mapaClientes = {};
+    ventas.forEach(v => {
+        const nombre = v.cliente || "Mostrador";
+        if (!mapaClientes[nombre]) {
+            mapaClientes[nombre] = 0;
+        }
+        mapaClientes[nombre] += 1;
+    });
 
-    // pedidos pendientes: por ahora no tenemos estado de pedido -> 0
-    if (statPendientes) statPendientes.textContent = "0";
+    let clienteFrecuente = "—";
+    let maxVentasCliente = 0;
+    Object.entries(mapaClientes).forEach(([nombre, cant]) => {
+        if (cant > maxVentasCliente) {
+            maxVentasCliente = cant;
+            clienteFrecuente = nombre;
+        }
+    });
+    if (statClienteFrecuente) statClienteFrecuente.textContent = clienteFrecuente;
+
+    // 4. Pedidos realizados en total (número de ventas)
+    if (statPedidosTotales) {
+        statPedidosTotales.textContent = ventas.length.toString();
+    }
 }
-
 /* ===================== UTIL ===================== */
 
 function formatearPesos(valor) {
